@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "formidable": "^2.1.1",
+    "fs": "^0.0.1-security",
+    "upper-case": "^2.0.2"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "nodejs-tutorial",
+  "description": "What is NodeJS\r -NodeJS is an open source server environment.\r -NoceJS is free\r -NodeJS runs on various platforms (Windows, Linux, Unix, Mac OS X, etc.)\r -NodeJS uses JavaScript on the server.",
+  "version": "1.0.0",
+  "main": "myfirstmodule.js",
+  "author": "",
+  "license": "ISC"
+}

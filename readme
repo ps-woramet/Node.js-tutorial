@@ -1,0 +1,321 @@
+What is NodeJS
+-NodeJS is an open source server environment.
+-NoceJS is free
+-NodeJS runs on various platforms (Windows, Linux, Unix, Mac OS X, etc.)
+-NodeJS uses JavaScript on the server.
+
+Why NodeJS
+-NodeJs uses asynchronous programming
+-A common task for a web server can be to open a file on te server and return the content to the client.
+
+Here is how PHP or ASP handles afile request:
+-Sends the task to the computer's file system.
+-Waits while the file system opens and reads the file.
+-Returns the content to the client.
+-Ready to handle the next request.
+
+Here is how Node.js Handles a file request
+-Sends the task to the computer's file system.
+-Ready to handle the next request.
+-When the file system has opened and read the file, the server returns the content to the client.
+
+Node.js eliminates the waiting, and simply continues with the next read.
+Node.js runs single-threaded, non-blocking, asynchronously programming which is very memory efficient.
+
+What Can Node.js Do ?
+1. Node.js can generate dynamic page content
+2. Node.js can create, open, read, write, delete, and close files on the server
+3. Node.js can collect form data
+4. NOde.js can add, delete, modify data in your database
+
+What is a Node.js File?
+-Node.js files contain tasks that will be executed on certain events
+-A typical event is someone trying to access a port on the server
+-Node.js flies must be initiated on the server before having any effect
+-Node.js files have extension ".js"
+
+-----------------------------------------------------
+
+Node.js คืออะไร
+-Node.js เป็นสภาพแวดล้อมของเซิร์ฟเวอร์ที่เปิดเผยตัวอย่างเป็นซอร์สโอเพนซอร์ส
+-Node.js เป็นฟรี
+-Node.js รันบนแพลตฟอร์มต่าง ๆ (Windows, Linux, Unix, Mac OS X เป็นต้น)
+-Node.js ใช้ JavaScript ในการทำงานบนเซิร์ฟเวอร์
+
+ทำไมต้องใช้ Node.js
+
+-Node.js ใช้การเขียนโปรแกรมแบบ asynchronous
+-งานที่สามารถพบในเซิร์ฟเวอร์ที่เป็นที่นิยมคือการเปิดไฟล์บนเซิร์ฟเวอร์และส่งเนื้อหากลับไปยังไคลเอนต์
+
+นี่คือวิธี PHP หรือ ASP ในการจัดการคำขอไฟล์:
+
+-ส่งงานไปยังระบบไฟล์ของคอมพิวเตอร์
+-รอให้ระบบไฟล์เปิดและอ่านไฟล์
+-ส่งเนื้อหากลับไปยังไคลเอนต์
+-พร้อมที่จะจัดการคำขอถัดไป
+
+นี่คือวิธีที่ Node.js จัดการคำขอไฟล์:
+
+-ส่งงานไปยังระบบไฟล์ของคอมพิวเตอร์
+-พร้อมที่จะจัดการคำขอถัดไป
+-เมื่อระบบไฟล์เปิดและอ่านไฟล์เสร็จสิ้นแล้ว เซิร์ฟเวอร์จะส่งเนื้อหากลับไปยังไคลเอนต์
+
+1. Node.js สามารถสร้างเนื้อหาของหน้าเว็บแบบไดนามิก
+2. Node.js สามารถสร้างไฟล์ใหม่ เปิดอ่าน เขียน เรื่อง ลบ และปิดไฟล์บนเซิร์ฟเวอร์
+3. Node.js สามารถเก็บข้อมูลจากแบบฟอร์มที่ส่งมาจากผู้ใช้
+4. Node.js สามารถเพิ่ม ลบ แก้ไขข้อมูลในฐานข้อมูล
+
+ไฟล์ Node.js คืออะไร?
+-ไฟล์ Node.js เป็นไฟล์ที่มีงานที่จะถูกดำเนินการเมื่อเกิดเหตุการณ์บางอย่างขึ้น
+-เหตุการณ์ที่ตัวอย่างคือมีคนพยายามเข้าถึงพอร์ตบนเซิร์ฟเวอร์
+-ไฟล์ Node.js ต้องถูกเริ่มต้นในเซิร์ฟเวอร์ก่อนที่จะมีผล
+-ไฟล์ Node.js มีนามสกุล ".js"
+
+-----------------------------------------------------
+
+1. Downloads node.js LTS https://nodejs.org/en/download
+
+2. install
+
+3. open terminal typing
+
+node -v          "for check version"
+node             "for coding"
+add let name = "woramet";
+name
+
+4. create server in server.js
+
+    let http = require('http');
+
+    http.createServer(function(req, res){
+        res.writeHead(200, {'Conten-Type': 'text/html'}) ;
+        res.end('Hello world');
+    }).listen(8000);
+
+    -open terminal typing
+
+    node server.js
+
+    -open web browser typing in url
+
+    http://localhost:8000/
+   
+    -press ctrl+Shift+j --> Network --> All --> localhost --> Headers
+
+6. fix head in server.js
+
+    let http = require('http');
+
+    http.createServer(function(req, res){
+        // res.writeHead(200, {'Conten-Type': 'text/html'}) ;
+        res.writeHead(404, {'Conten-Type': 'text/html'}) ;
+        res.end('Hello world');
+    }).listen(8000);
+
+    -open terminal typing
+
+    node server.js
+
+    -open web browser typing in url
+
+    http://localhost:8000/
+
+    -press ctrl+Shift+j --> Network --> All --> localhost --> Headers
+
+7. create myfirstmodule.js
+
+    exports.myDateTime = function(){
+        return Date();
+    }
+
+    fix server.js
+
+    let http = require('http');
+    let firstmodule = require('./myfirstmodule');
+
+
+    http.createServer(function(req, res){
+        res.writeHead(200, {'Conten-Type': 'text/html'}) ;
+        res.write('The date and time are currently : '+ firstmodule.myDateTime());
+        res.write(req.url);
+        res.end('Hello world');
+    }).listen(8000);
+
+
+8. วิธีรับค่าจาก url [fix server.js and open webrowser : url http://localhost:8000/?year=66&&month=november]
+
+    let http = require('http');
+    let firstmodule = require('./myfirstmodule');
+    let url = require('url');
+
+
+    http.createServer(function(req, res){
+        res.writeHead(200, {'Conten-Type': 'text/html'}) ;
+        // res.write('The date and time are currently : '+ firstmodule.myDateTime());
+        // req.url คือคุณสมบัติที่ใช้ในการเก็บ URL ของคำขอ (request) 
+        // res.write(req.url);
+
+        // "parse" หมายถึงกระบวนการแปลงข้อมูลที่อยู่ในรูปแบบที่เป็นข้อความ (เช่น สตริง) เป็นโครงสร้างข้อมูลที่สามารถอ่านและใช้งานได้ในรูปแบบอื่น ๆ ที่เข้าใจง่ายยิ่งขึ้น เช่น ออบเจกต์ หรือค่าในตัวแปร
+        // พารามิเตอร์ true ที่ถูกส่งเข้ามาในฟังก์ชัน url.parse() ใช้ในการแปลง URL ให้เป็นอ็อบเจกต์ที่มีคุณสมบัติแยกแยะอย่างละเอียด
+        let q = url.parse(req.url, true).query;
+        let txt = q.year + " " + q.month;
+        res.end(txt);
+    }).listen(8000);
+
+9. วิธี อ่านไฟล์
+
+    let http = require('http');
+    let fs = require('fs');
+
+    http.createServer(function(req, res){
+        fs.readFile('index.html', function(err, data){
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.write(data);
+            return res.end();
+        })
+    }).listen(8000);
+
+10. การ append ไฟล์ จะเขียน hello world เพิ่มลงใน mynewfile.txt
+
+    let http = require('http');
+    let fs = require('fs');
+
+    http.createServer(function(req, res){
+        fs.readFile('index.html', function(err, data){
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.write(data);
+            return res.end();
+        })
+    }).listen(8000);
+
+    fs. appendFile('mynewfile.txt', 'Hello, World', function(err){
+        if (err){
+            console.log('saved');
+        }
+    })
+
+    สร้าง mynew.file.txt
+    Hello, mynewfile.
+
+11. การ สร้าง ไฟล์ใหม่
+
+    fs.open('mynewfile2.txt', 'w', function(err){
+        if (err) throw err;
+            console.log('save')
+    })
+
+12. การ สร้าง ไฟล์ใหม่ และ เขียนทับ 
+
+    fs.writeFile('mynewfile3.txt', 'This is new file 3', function(err){
+        if (err) throw err;
+        console.log('save');
+    })
+
+13. การลบข้อมูลในไฟล์
+
+    fs.unlink('mynewfile3.txt', function(err){
+        if (err) throw err;
+        console.log('File delete');
+    })
+
+14. การเปลี่ยนชื่อไฟล์
+
+    fs.rename('mynewfile2.txt', 'myrenamefile.txt', function(err){
+        if (err) throw err;
+        console.log('File renamed');
+    })
+
+15. แสดง host path search
+
+    let http = require('http');
+    let firstmodule = require('./myfirstmodule');
+    let url = require('url');
+    let fs = require('fs');
+    let adr = 'http://localhost:8000/default.html?year=2020&month=november';
+
+    let q = url.parse(adr, true);
+
+    console.log(q.host); // return localhost:8000
+    console.log(q.pathname); // /default.html
+    console.log(q.search); // ?year=2020&month=november
+
+    let qdata = q.query;
+    console.log(qdata.year); // 2020
+
+16. create about.html and contact.html open web browser type [localhost:8000/about.html]
+
+    let http = require('http');
+    let url = require('url');
+    let fs = require('fs');
+    let adr = 'http://localhost:8000/default.html?year=2020&month=november';
+
+    http.createServer(function(req, res){
+        let q = url.parse(req.url, true);
+        let filename = "." + q.pathname;
+        fs.readFile(filename, function(err, data){
+            if (err){
+                res.writeHead(404, {'Content-Type': 'text/html'});
+                return res.end('404 Not found')
+            }
+
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.write(data);
+            return res.end();
+        })
+    }).listen(8000);
+
+17. -install 
+    npm init
+    npm i upper-case
+
+    -install in dependencies
+    npm install 
+
+    ตัวอย่างการใช้ upper-case จาก npm
+
+    let http = require('http');
+    let firstmodule = require('./myfirstmodule');
+    let url = require('url');
+    let fs = require('fs');
+    let adr = 'http://localhost:8000/default.html?year=2020&month=november';
+    let q = url.parse(adr, true);
+    let uc = require('upper-case');
+
+    http.createServer(function(req, res){
+        res.writeHead(200, {'Content-Type': 'text/html'})
+        res.write(uc.upperCase('woramet tompudsa'));
+        res.end();
+    }).listen(8000);
+
+18. การเปิดไฟล์ สร้างไฟล์ demo.txt
+
+    let http = require('http');
+    let firstmodule = require('./myfirstmodule');
+    let url = require('url');
+    let fs = require('fs');
+    let adr = 'http://localhost:8000/default.html?year=2020&month=november';
+    let q = url.parse(adr, true);
+    let uc = require('upper-case');
+    let rs = fs.createReadStream('./demo.txt');
+
+    rs.on('open', function(){
+        console.log('The file is open');
+    })
+
+19. event emitter
+
+    let events = require('events');
+    const { EventEmitter } = require('events');
+    let eventEmitter = new events.EventEmitter();
+
+    // Create an event handler;
+    let myEventHandler = function(){
+        console.log('I hear scream');
+    }
+
+    // Assign the event handler to an event:
+    eventEmitter.on('scream', myEventHandler);
+
+    // Fire the 'scream' event;
+    eventEmitter.emit('scream');
